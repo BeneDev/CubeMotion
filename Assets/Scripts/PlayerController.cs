@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour {
     bool bJustCollided = false;
 
     [Header("ParticleEffects"), SerializeField] ParticleSystem windChannel;
+    [SerializeField] ParticleSystem impact;
 
     #endregion
 
@@ -81,6 +82,10 @@ public class PlayerController : MonoBehaviour {
         {
             float squashAmount = (80f - rb.velocity.magnitude * 5f) / 100f;
             SquashAndStretch(squashAmount);
+            if(impact && !impact.isPlaying)
+            {
+                impact.Play();
+            }
             bJustCollided = true;
             startTime = Time.realtimeSinceStartup;
             camShake.shakeAmount = 0.7f;
