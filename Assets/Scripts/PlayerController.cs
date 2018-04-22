@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour {
     PlayerInput input;
     Rigidbody rb;
     Camera cam;
+    CameraShake camShake;
 
     Vector3 direction;
     [SerializeField] float veloCap;
@@ -25,6 +26,11 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] float rotationSpeed;
     [SerializeField] float shakingVelo = 25f;
     float stretchamount;
+    float startTime;
+
+    [SerializeField] float squashDurationOnImpact = 0.5f;
+
+    bool bJustCollided = false;
 
     [Header("ParticleEffects"), SerializeField] ParticleSystem windChannel;
 
@@ -37,6 +43,7 @@ public class PlayerController : MonoBehaviour {
         input = GetComponent<PlayerInput>();
         rb = GetComponent<Rigidbody>();
         cam = Camera.main;
+        camShake = cam.GetComponent<CameraShake>();
     }
 
     void Start()
@@ -53,8 +60,32 @@ public class PlayerController : MonoBehaviour {
     {
         ReadInput();
         ShakeWhenFast();
-        stretchamount = (100 + rb.velocity.magnitude) / 100f;
-        SquashAndStretch(stretchamount);
+        if (!bJustCollided)
+        {
+            stretchamount = (100 + rb.velocity.magnitude) / 100f;
+            SquashAndStretch(stretchamount);
+        }
+        else
+        {
+            if(Time.realtimeSinceStartup >= startTime + squashDurationOnImpact)
+            {
+                bJustCollided = false;
+                rb.velocity = -transform.forward * 10f;
+            }
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (startTime < Time.realtimeSinceStartup - 1.5f)
+        {
+            float squashAmount = (80f - rb.velocity.magnitude * 5f) / 100f;
+            SquashAndStretch(squashAmount);
+            bJustCollided = true;
+            startTime = Time.realtimeSinceStartup;
+            camShake.shakeAmount = 0.7f;
+            camShake.shakeDuration = 0.3f;
+        }
     }
 
     #endregion
@@ -94,8 +125,8 @@ public class PlayerController : MonoBehaviour {
     {
         if(rb.velocity.magnitude > shakingVelo)
         {
-            cam.GetComponent<CameraShake>().shakeAmount = rb.velocity.magnitude / 200f;
-            cam.GetComponent<CameraShake>().shakeDuration = 0.1f;
+            camShake.shakeAmount = rb.velocity.magnitude / 200f;
+            camShake.shakeDuration = 0.1f;
 
             if(windChannel && !windChannel.isPlaying)
             {
