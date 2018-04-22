@@ -94,30 +94,33 @@ public class PlayerController : MonoBehaviour {
 
     private void ReadInput()
     {
-        direction.x = input.Horizontal;
-        direction.z = input.Vertical;
-
-        if(input.Boost > 0f)
+        if (!bJustCollided)
         {
-            if (rb.velocity.magnitude < veloCap * 2)
+            direction.x = input.Horizontal;
+            direction.z = input.Vertical;
+
+            if (input.Boost > 0f)
             {
-                rb.velocity += direction * (speed + (boostAmount * input.Boost)) * Time.fixedDeltaTime;
+                if (rb.velocity.magnitude < veloCap * 2)
+                {
+                    rb.velocity += direction * (speed + (boostAmount * input.Boost)) * Time.fixedDeltaTime;
+                }
             }
-        }
-        else
-        {
-            if (rb.velocity.magnitude < veloCap)
+            else
             {
-                rb.velocity += direction * speed * Time.fixedDeltaTime;
+                if (rb.velocity.magnitude < veloCap)
+                {
+                    rb.velocity += direction * speed * Time.fixedDeltaTime;
+                }
             }
-        }
 
-        if (input.Horizontal != 0 || input.Vertical != 0)
-        {
-            Quaternion targetRotation = new Quaternion();
-            targetRotation.SetLookRotation(direction);
+            if (input.Horizontal != 0 || input.Vertical != 0)
+            {
+                Quaternion targetRotation = new Quaternion();
+                targetRotation.SetLookRotation(direction);
 
-            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime);
+                transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime);
+            }
         }
     }
 

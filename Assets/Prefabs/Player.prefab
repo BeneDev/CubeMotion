@@ -202,6 +202,8 @@ MonoBehaviour:
   boostAmount: 35
   rotationSpeed: 12
   shakingVelo: 30
+  squashDurationOnImpact: 0.5
+  windChannel: {fileID: 198588474043646696}
 --- !u!198 &198588474043646696
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -214,7 +216,7 @@ ParticleSystem:
   stopAction: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -863,7 +865,7 @@ ParticleSystem:
     rateOverDistance:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 5
       minScalar: 0
       maxCurve:
         serializedVersion: 2
