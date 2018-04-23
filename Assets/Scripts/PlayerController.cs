@@ -153,6 +153,10 @@ public class PlayerController : MonoBehaviour {
     // Squashes (when under 100) or stretches (when over 100) the object
     private void SquashAndStretch(float percentage)
     {
+        if(percentage < 0)
+        {
+            percentage = 0.3f;
+        }
         transform.localScale = new Vector3(1f * (2f - percentage), 1f, 1f * percentage);
     }
 
