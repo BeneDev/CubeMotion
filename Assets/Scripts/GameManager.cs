@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour {
 
     public static GameManager Instance;
 
+
+    public GameObject activePlayer;
     [SerializeField] int dimensions = 2;
 
     #endregion
@@ -41,12 +43,12 @@ public class GameManager : MonoBehaviour {
 
     void Start()
     {
-		
+        activePlayer = GameObject.FindGameObjectWithTag("Player");
     }
 
     void Update()
     {
-		
+		// If the player pushes a button, search for a gameobject with the player tag which is not the current
     }
 
     private void FixedUpdate()

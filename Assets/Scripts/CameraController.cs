@@ -12,8 +12,6 @@ public class CameraController : MonoBehaviour {
 
     #region Fields
 
-    private GameObject player;
-
     [SerializeField] float speed;
     [SerializeField] float rotationSpeed = 12f;
 
@@ -23,7 +21,6 @@ public class CameraController : MonoBehaviour {
 
     private void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void Start()
@@ -33,12 +30,12 @@ public class CameraController : MonoBehaviour {
 
     void Update()
     {
-        Vector3 newPos = player.transform.position;
+        Vector3 newPos = GameManager.Instance.activePlayer.transform.position;
         newPos.y = 0f;
         transform.position = Vector3.Lerp(transform.position, newPos, speed * Time.deltaTime);
         if(GameManager.Instance.Dimensions == 3)
         {
-            Quaternion newRot = player.transform.rotation;
+            Quaternion newRot = GameManager.Instance.activePlayer.transform.rotation;
             transform.rotation = Quaternion.Lerp(transform.rotation, newRot, rotationSpeed * Time.deltaTime);
         }
     }
