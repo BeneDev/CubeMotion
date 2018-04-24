@@ -39,7 +39,7 @@ public class HeavyPlayerController : MonoBehaviour {
 	void Update () {
 		if(bJustCollided)
         {
-            if(Time.realtimeSinceStartup > startTime + 1.5f)
+            if(Time.realtimeSinceStartup > startTime + 1.2f)
             {
                 bJustCollided = false;
             }
