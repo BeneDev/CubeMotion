@@ -10,6 +10,8 @@ public interface IInput
 
     float Boost { get; }
 
+    bool AddForce { get; }
+
     float RightHorizontal { get; }
 
     float RightVertical { get; }

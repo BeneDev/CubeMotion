@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerInput : MonoBehaviour, IInput
 {
 
+    bool bAxisInUse = false;
+
     // The input for horizontal movement
     public float Horizontal
     {
@@ -28,6 +30,26 @@ public class PlayerInput : MonoBehaviour, IInput
         get
         {
             return Input.GetAxis("Boost");
+        }
+    }
+
+    public bool AddForce
+    {
+        get
+        {
+            if (Input.GetAxisRaw("AddForce") != 0)
+            {
+                if (bAxisInUse == false)
+                {
+                    bAxisInUse = true;
+                    return true;
+                }
+            }
+            if (Input.GetAxisRaw("AddForce") == 0)
+            {
+                bAxisInUse = false;
+            }
+            return false;
         }
     }
 
