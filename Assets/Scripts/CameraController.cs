@@ -6,7 +6,13 @@ public class CameraController : MonoBehaviour {
 
     #region Properties
 
-
+    public float Speed
+    {
+        get
+        {
+            return speed;
+        }
+    }
 
     #endregion
 
