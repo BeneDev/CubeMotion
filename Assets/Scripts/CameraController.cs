@@ -33,11 +33,8 @@ public class CameraController : MonoBehaviour {
         Vector3 newPos = GameManager.Instance.activePlayer.transform.position;
         newPos.y = 0f;
         transform.position = Vector3.Lerp(transform.position, newPos, speed * Time.deltaTime);
-        if(GameManager.Instance.Dimensions == 3)
-        {
-            Quaternion newRot = GameManager.Instance.activePlayer.transform.rotation;
-            transform.rotation = Quaternion.Lerp(transform.rotation, newRot, rotationSpeed * Time.deltaTime);
-        }
+        //Quaternion newRot = GameManager.Instance.activePlayer.transform.rotation;
+        //transform.rotation = Quaternion.Lerp(transform.rotation, newRot, rotationSpeed * Time.deltaTime);
     }
 
     private void FixedUpdate()

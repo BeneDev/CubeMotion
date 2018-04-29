@@ -154,7 +154,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1089846710913012, guid: 3ac901f6589e1074d8658643b0f7dc5a, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3ac901f6589e1074d8658643b0f7dc5a, type: 2}
@@ -483,26 +483,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 198290516818884890, guid: c68bea502b4cb404a96d2c26bbbf8bbf,
+    - target: {fileID: 114764584369557948, guid: c68bea502b4cb404a96d2c26bbbf8bbf,
         type: 2}
-      propertyPath: lengthInSec
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 198290516818884890, guid: c68bea502b4cb404a96d2c26bbbf8bbf,
-        type: 2}
-      propertyPath: randomSeed
-      value: 846935523
-      objectReference: {fileID: 0}
-    - target: {fileID: 198290516818884890, guid: c68bea502b4cb404a96d2c26bbbf8bbf,
-        type: 2}
-      propertyPath: InitialModule.startLifetime.minScalar
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 198290516818884890, guid: c68bea502b4cb404a96d2c26bbbf8bbf,
-        type: 2}
-      propertyPath: InitialModule.startLifetime.scalar
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1721703061}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c68bea502b4cb404a96d2c26bbbf8bbf, type: 2}
   m_IsPrefabParent: 0
@@ -635,6 +620,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 526aebe9564f6d14cbb513d6bec25307, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1721703061 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1639703237090938, guid: 526aebe9564f6d14cbb513d6bec25307,
+    type: 2}
+  m_PrefabInternal: {fileID: 1706966942}
 --- !u!1 &1748637246
 GameObject:
   m_ObjectHideFlags: 0

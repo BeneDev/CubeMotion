@@ -59,19 +59,22 @@ public class PlayerController : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        ReadInput();
-        ShakeWhenFast();
-        if (!bJustCollided)
+        if (GameManager.Instance.activePlayer == transform.gameObject)
         {
-            stretchamount = (100 + rb.velocity.magnitude) / 100f;
-            SquashAndStretch(stretchamount);
-        }
-        else
-        {
-            if(Time.realtimeSinceStartup >= startTime + squashDurationOnImpact)
+            ReadInput();
+            ShakeWhenFast();
+            if (!bJustCollided)
             {
-                bJustCollided = false;
-                rb.velocity = -transform.forward * 10f;
+                stretchamount = (100 + rb.velocity.magnitude) / 100f;
+                SquashAndStretch(stretchamount);
+            }
+            else
+            {
+                if (Time.realtimeSinceStartup >= startTime + squashDurationOnImpact)
+                {
+                    bJustCollided = false;
+                    rb.velocity = -transform.forward * 10f;
+                }
             }
         }
     }

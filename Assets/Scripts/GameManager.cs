@@ -6,14 +6,6 @@ public class GameManager : MonoBehaviour {
 
     #region Properties
 
-    public int Dimensions
-    {
-        get
-        {
-            return dimensions;
-        }
-    }
-
     #endregion
 
     #region Fields
@@ -22,7 +14,11 @@ public class GameManager : MonoBehaviour {
 
 
     public GameObject activePlayer;
-    [SerializeField] int dimensions = 2;
+
+    private GameObject[] players;
+    int playerIndex;
+
+    bool bSwitchInUse = false;
 
     #endregion
 
@@ -39,16 +35,37 @@ public class GameManager : MonoBehaviour {
         {
             Destroy(gameObject);
         }
+        playerIndex = 0;
     }
 
     void Start()
     {
-        activePlayer = GameObject.FindGameObjectWithTag("Player");
+        players = GameObject.FindGameObjectsWithTag("Player");
+        activePlayer = players[playerIndex];
     }
 
     void Update()
     {
-		// If the player pushes a button, search for a gameobject with the player tag which is not the current
+        if (Input.GetAxisRaw("SwitchPlayer") != 0)
+        {
+            if (bSwitchInUse == false)
+            {
+                bSwitchInUse = true;
+                if (playerIndex < players.Length - 1)
+                {
+                    playerIndex++;
+                }
+                else
+                {
+                    playerIndex = 0;
+                }
+                activePlayer = players[playerIndex]; 
+            }
+        }
+        if (Input.GetAxisRaw("SwitchPlayer") == 0)
+        {
+            bSwitchInUse = false;
+        }
     }
 
     private void FixedUpdate()

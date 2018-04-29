@@ -48,7 +48,10 @@ public class HeavyPlayerController : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        ReadInput();
+        if (GameManager.Instance.activePlayer == transform.gameObject)
+        {
+            ReadInput();
+        }
     }
 
     private void ReadInput()
@@ -59,7 +62,6 @@ public class HeavyPlayerController : MonoBehaviour {
 
         if (rb.velocity.magnitude < veloCap && input.AddForce)
         {
-            print("add force");
             rb.velocity += direction * speed * Time.fixedDeltaTime;
         }
 
